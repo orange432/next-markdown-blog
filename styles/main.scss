@@ -1,0 +1,37 @@
+.article{
+  h1{
+    font-weight: 700;
+    font-size: 32px;
+  }
+  h2{
+    font-weight: 700;
+    font-size: 28px;
+  }
+  h3{
+    font-weight: 700;
+    font-size: 24px;
+  }
+  h4{
+    font-weight: 700;
+    font-size: 16px;
+  }
+  ul{
+    list-style: disc;
+    padding-left: 20px;
+  }
+  ol{
+    list-style: decimal;
+    padding-left: 20px
+  }
+  code{
+    background: #222;
+    color: #fff;
+    padding: 8px;
+    margin: 8px;
+    width: 100%;
+    display: inline-block;
+  }
+  p{
+    margin-top: 10px;
+  }
+}
