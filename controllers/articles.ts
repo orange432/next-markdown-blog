@@ -2,6 +2,7 @@ import Article from '../models/article';
 
 export async function listArticles(){
   let articles = await Article.findAll();
+  // Clean the data
   let articleList = articles.map((article: any)=>({
     slug: article.dataValues.slug,
     category: article.dataValues.category,
@@ -18,6 +19,7 @@ export async function getArticle(slug: string){
   if(!search){
     return '';
   }
+  // Clean the data
   const article = search.dataValues;
   const content = {
     slug: article.slug,
@@ -31,12 +33,20 @@ export async function getArticle(slug: string){
 }
 
 export async function createArticle(data){
-  await Article.sync();
-  let search = await Article.findOne({where: {slug: data.slug}});
+  try{
+    await Article.sync();
+    let search = await Article.findOne({where: {slug: data.slug}});
 
-  if(search){
+    if(search){
+      await Article.update(data,{where: {slug: data.slug}});
+    }else{
+      await Article.create(data);
+    }
     
+    return true;
+  }catch(err){
+    console.log(err);
+    return false;
   }
-  await Article.create(data);
-  return true;
+  
 }

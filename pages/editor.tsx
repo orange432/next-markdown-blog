@@ -11,6 +11,10 @@ export default function Home() {
   const [content,setContent] = useState('');
   const [message,setMessage] = useState('');
   function saveArticle(){
+    if(!title || !slug || !category || !image || !content){
+      setMessage('All fields must be filled');
+      return;
+    }
     fetch('/api/add-article',{
       method: "POST",
       headers: {
